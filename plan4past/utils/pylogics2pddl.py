@@ -33,7 +33,7 @@ from pylogics.syntax.base import And, Formula, Not, Or
 from pylogics.syntax.pltl import Atomic as PLTLAtomic
 from pylogics.syntax.pltl import PropositionalTrue
 
-from plan4past.constants import TRUE_ATOM
+from plan4past.constants import TRUE_PREDICATE
 from plan4past.helpers.utils import check_
 from plan4past.helpers.yesterday_atom_helper import YesterdayAtom
 
@@ -62,7 +62,7 @@ class Pylogics2PddlTranslator:
     @translate.register
     def translate_true(self, _formula: PropositionalTrue) -> PddlFormula:
         """Compute the PDDL version of a true formula."""
-        return TRUE_ATOM
+        return TRUE_PREDICATE
 
     @translate.register
     def translate_atomic(self, formula: PLTLAtomic) -> PddlFormula:

@@ -285,7 +285,6 @@ class ADLCompiler(Compiler):
 
         cm = CompilationManager(self.formula)
         new_fluents, new_effs, new_goal = cm.get_problem_extension()
-        new_fluents.append(TRUE_ATOM)
         self._fresh_atoms = set(new_fluents)
         self._yesterday_mapping = cm.get_yesterday_mapping()
         self._yesterday_dictionary = cm.yesterday_dictionary
@@ -306,7 +305,7 @@ class ADLCompiler(Compiler):
         self, new_fluents, new_effs, new_goal
     ):  # pylint: disable=arguments-differ
         """Compute the new domain."""
-        new_predicates = [self.pylogics2pddl(fluent) for fluent in new_fluents]
+        new_predicates = [self.pylogics2pddl(fluent) for fluent in new_fluents] + [TRUE_PREDICATE]
         new_whens_positive = [
             self.effect_conversion(eff, positive=True) for eff in new_effs
         ]
